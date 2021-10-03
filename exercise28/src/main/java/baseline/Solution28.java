@@ -15,9 +15,15 @@ import java.util.Scanner;
 
 public class Solution28 {
     public static void main(String[] args) {
-
+        System.out.printf("The total is %d.%n", summer());
     }
     public static int summer() {
-
+        int sum = 0;
+        Scanner sc = new Scanner(System.in);
+        for(int i= 0; i < 5; i++) {
+            System.out.print("Enter a number: ");
+            sum += sc.nextInt();
+        }
+        return sum;
     }
 }
