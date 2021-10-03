@@ -8,6 +8,7 @@ class Solution24Test {
 
     @Test
     void main() {
-
+        assertTrue(Solution24.isAnagram("note","tone"));
+        assertFalse(Solution24.isAnagram("note","done"));
     }
 }
