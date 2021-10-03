@@ -24,11 +24,33 @@ import java.util.Random;
 
 public class Solution34 {
     public static void main(String[] args) {
-
+        String[] employees = employeeList();
+        System.out.printf("There are %d employees:%n", employees.length);
+        for(int i = 0; i <  employees.length; i++) {
+            System.out.printf("%s%n", employees[i]);
         }
     }
     public static String[] employeeList() {
+        Scanner sc = new Scanner(System.in);
 
+        String[] employees = {"John Smith","Jackie Jackson","Chris Jones","Amanda Cullen","Jeremy Goodwin"};
+        int length = employees.length;
+        int index = 0;
+        System.out.printf("There are %d employees: ", length);
+        System.out.println("Enter an employee name to remove: ");
+        String name = sc.nextLine();
+        String[] newEmployees = new String[length-1];
+
+        for(int i = 0; i < employees.length; i++) {
+            if (employees[i].equals(name))
+                index = i;
+        }
+        for(int i = 0, j = 0; i < employees.length; i++) {
+            if(i == index)
+                continue;
+            newEmployees[j++] = employees[i];
+        }
+        return newEmployees;
     }
 }
 
