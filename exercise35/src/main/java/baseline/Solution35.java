@@ -24,9 +24,25 @@ import java.util.*;
 
 public class Solution35 {
     public static void main(String[] args) {
-
+        Random rand = new Random();
+        String[] nameList = addName();
+        int index = rand.nextInt(nameList.length);
+        System.out.printf("The winner is %s%n", nameList[index]);
     }
     public static String[] addName() {
+        Scanner sc = new Scanner(System.in);
+        String[] nameList = new String[0];
 
+        List<String> names = new ArrayList<String>(Arrays.asList(nameList));
+
+        String name = "blank";
+
+        while(!name.equals("")) {
+            System.out.print("Enter a name: ");
+            name = sc.nextLine();
+            names.add(name);
+        }
+        nameList = names.toArray(nameList);
+        return nameList;
     }
 }
