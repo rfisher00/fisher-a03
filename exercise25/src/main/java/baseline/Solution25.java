@@ -33,15 +33,55 @@ import java.util.Scanner;
 
 public class Solution25 {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String pw;
+        System.out.print("Enter a password: ");
+        pw = sc.nextLine();
 
+        String pwStrength = switch (passwordValidator(pw)) {
+            case 1 -> "very weak password";
+            case 2 -> "weak password";
+            case 3 -> "strong password";
+            case 4 -> "very strong password";
+            default -> "password of unknown strength";
+        };
+        System.out.printf("The password '%s' is a %s.%n", pw, pwStrength);
     }
 
     public static boolean isNumeric(String str) {
-
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public static int passwordValidator(String pw) {
+        int status = 0;
+        boolean hasDigit = false;
+        boolean hasSymbol = false;
+        boolean hasLetter = false;
+        if (pw.length() < 8) {
+            if (isNumeric(pw))
+                return status = 1;
+            if (pw.matches("[a-zA-Z]+"))
+                return status = 2;
+        }
+        for (char c : pw.toCharArray()) {
+            if(Character.isLetter(c))
+                hasLetter = true;
+            if(Character.isDigit(c))
+                hasDigit = true;
+            if(!pw.matches("[a-zA-Z0-9 ]*"))
+                hasSymbol = true;
+        }
+        if(hasLetter && hasDigit && pw.length() >= 8)
+            status = 3;
+        if(hasLetter && hasSymbol && pw.length() >= 8)
+            status = 4;
 
+        return status;
     }
 }
 
