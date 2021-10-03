@@ -24,9 +24,8 @@ public class Solution31 {
         while (!input) {
             try {
                 System.out.print("How old are you? ");
-                age = Integer.valueOf(sc.nextLine());
+                age = Integer.parseInt(sc.nextLine());
                 if(age <= 0) {
-                    input = false;
                     System.out.println("Not a valid number.");
                 }
                 else
@@ -41,8 +40,7 @@ public class Solution31 {
             try {
                 System.out.print("What is your resting heart rate? (pulses per minute) ");
                 restingHR = Integer.valueOf(sc.nextLine());
-                if(age <= 0) {
-                    input = false;
+                if(restingHR <= 0) {
                     System.out.println("Not a valid number.");
                 }
                 else
