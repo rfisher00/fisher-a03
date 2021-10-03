@@ -17,14 +17,26 @@ import java.util.Scanner;
 
 public class Solution31 {
     public static void main(String[] args) {
-
+        Scanner sc = new Scanner(System.in);
+        int age;
+        int restingHR ;
+        System.out.print("How old are you? ");
+        age = sc.nextInt();
+        System.out.print("What is your resting heart rate? (pulses per minute) ");
+        restingHR = sc.nextInt();
+        makeTable(age, restingHR);
     }
 
     public static double calcTargetHR(int age, int restingHR, int intensity) {
-
+        return (((220 - age) - restingHR) * ((double) intensity/100)) + restingHR;
     }
 
     public static void makeTable(int age, int restingHR) {
+        System.out.printf("%nResting Pulse: %d \t\t\tAge: %d%nIntensity    | Rate%n-------------|--------%n%n", restingHR, age);
+        for (int i = 55; i < 100; i = i + 5) {
 
+            System.out.printf("%d           | %d bpm%n", i, Math.round(calcTargetHR(age, restingHR, i)));
+        }
+    }
 }
 
