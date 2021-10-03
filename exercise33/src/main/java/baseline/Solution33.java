@@ -19,9 +19,15 @@ import java.util.Random;
 
 public class Solution33 {
     public static void main(String[] args) {
-
+        Scanner sc = new Scanner(System.in);
+        System.out.printf("What's your question?%n> ");
+        sc.nextLine();
+        System.out.printf("%s%n", eightBall());
     }
     public static String eightBall() {
-
+        Random rand = new Random();
+        String[] eightball = {"Yes", "No", "Ask again later"};
+        int random = rand.nextInt(3);
+        return eightball[random];
     }
 }
