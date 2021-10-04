@@ -33,14 +33,55 @@ import java.util.Collections;
 
 public class Solution37 {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("What's the minimum length? ");
+        int length = sc.nextInt();
+        System.out.print("How many special characters? ");
+        int numSpecChar = sc.nextInt();
+        System.out.print("How many numbers? ");
+        int numNumbers = sc.nextInt();
 
+        String password = generatePW(length, numSpecChar, numNumbers);
+
+        System.out.printf("Your password is %s", password);
     }
 
     public static String generatePW(int length, int numSpecChar, int numNumbers) {
+        Random rand = new Random();
+        StringBuilder sb = new StringBuilder();
 
+        String password = null;
+
+        final String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        final String numbers = "0987654321";
+        final String symbols = "!@#$%^&*()_-=+[{]}\"|;:'/?.>,<~";
+
+        for (int i = 0; i < numSpecChar; i++) {
+            int randomIndex = rand.nextInt(symbols.length());
+            sb.append(symbols.charAt(randomIndex));
+        }
+
+        for (int i = 0; i < numNumbers; i++) {
+            int randomIndex = rand.nextInt(numbers.length());
+            sb.append(numbers.charAt(randomIndex));
+        }
+
+        for (int i = 0; i < (length - (numNumbers + numSpecChar)); i++) {
+            int randomIndex = rand.nextInt(letters.length());
+            sb.append(letters.charAt(randomIndex));
+        }
+
+        password = sb.toString();
+        return shufflePW(password);
     }
 
     public static String shufflePW(String password) {
-
+        List<String> passwordList = Arrays.asList(password.split(""));
+        Collections.shuffle(passwordList);
+        StringBuilder sb = new StringBuilder();
+        for (String letter : passwordList) {
+            sb.append(letter);
+        }
+        return sb.toString();
     }
 }
