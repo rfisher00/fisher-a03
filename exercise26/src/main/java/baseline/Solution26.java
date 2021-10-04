@@ -16,6 +16,16 @@ import java.util.Scanner;
 
 public class Solution26 {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("What is your balance? ");
+        double balance = sc.nextDouble();
+        System.out.print("What is the % APR on the card? ");
+        double apr = sc.nextDouble();
+        System.out.print("What is the monthly payment you can make? ");
+        double monthly = sc.nextDouble();
 
+        PaymentCalculator paymentCalculator = new PaymentCalculator(balance, apr, monthly);
+
+        System.out.printf("It will take you %.0f months to pay off this card.%n", Math.ceil(PaymentCalculator.calculateMonthsUntilPaidOff()));
     }
 }
